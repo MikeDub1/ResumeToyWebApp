@@ -16,5 +16,6 @@ class Skill extends Model
     *
     * @var array
     */
-   protected $fillable = ['skill_name', 'description'];
+   protected $fillable = ['skill_name', 'description', 'user_id'];
 }
+//Link user ID to skills table.

@@ -64,7 +64,10 @@ class SkillsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $skill = Skill::find($id);
+
+        return view('resums.skills.edit')->with('skill', $skill);
+
     }
 
     /**
@@ -87,6 +90,7 @@ class SkillsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Skill::find($id)->delete();
+        return redirect('/resume');
     }
 }

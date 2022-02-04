@@ -11,7 +11,12 @@ class ResumeController extends Controller
 {
     public function index(){
 
-        $skills = Skill::all();
+        if(!auth()->user()){
+            return view('resume.index');
+        }
+        $id = auth()->user()->id;
+
+        $skills = Skill::where('user_id', '=', $id)->all();
         $experiences = Experience::all();
         $projects = Project::all();
 

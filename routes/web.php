@@ -26,3 +26,7 @@ Route::resource('/experiences', ExperiencesController::class)->except(['index', 
 Route::resource('/projects', ProjectsController::class)->except(['index', 'show']);
 
 Route::get('/resume', [ResumeController::class, 'index']);
+Auth::routes();
+
+Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
+

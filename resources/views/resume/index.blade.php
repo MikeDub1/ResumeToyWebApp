@@ -3,9 +3,11 @@
 @section('content')
 <h1 class="text-center text-5xl my-5">Resume</h1>
 
+    @auth
     <div class="mx-40">
         <div class="justify-items-center align-middle">
             <h1 class="text-4xl text-center">Skills:</h1>
+
             <table class="table-auto mx-auto mt-5">
                 <tr class="bg-blue-100">
                     <th class="w-1/4 border-4 border-gray-500">
@@ -23,6 +25,13 @@
                         </td>
                         <td class="w-1/4 border-4 border-gray-500">
                             {{ $skill->description }}
+                        </td>
+                        <td class="text-center w-1/4 border-4 border-gray-500">
+                            <form action="/skills/{{ $skill->id }}" method="POST">
+                                @method('DELETE')
+                                @csrf
+                                <button class="bg-gray-300 pt-2 pb-2 px-5" type="submit">Del</button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach
@@ -76,6 +85,13 @@
                     <td class="w-1/8 border-4 border-gray-500">
                         {{ $experience->end_date }}
                     </td>
+                    <td class=" text-center w-1/8 border-4 border-gray-500">
+                        <form action="/experiences/{{ $experience->id }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button class="bg-gray-300 pt-2 pb-2 px-5" type="submit">Del</button>
+                        </form>
+                    </td>
                 </tr>
                 @endforeach
             </table>
@@ -126,6 +142,13 @@
                     <td class="w-1/8 border-4 border-gray-500">
                         {{ $project->end_date }}
                     </td>
+                    <td class="text-center w-1/8 border-4 border-gray-500">
+                        <form action="/projects/{{ $project->id }}" method="post">
+                            @method('DELETE')
+                            @csrf
+                            <button class="bg-gray-300 pt-2 pb-2 px-5 border-solid" type="submit">Del</button>
+                        </form>
+                    </td>
                     <!--Add a destroy button to the tables.-->
                 </tr>
                 @endforeach
@@ -141,5 +164,11 @@
             <hr class="mt-4 mb-8">
         </div>
     </div>
+
+    @endauth
+
+    @guest
+    <h1>Please <a href="/login">sign in</a> to see your web resume.</h1>
+    @endguest
 
 @endsection
