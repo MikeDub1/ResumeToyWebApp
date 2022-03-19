@@ -39,7 +39,8 @@ class SkillsController extends Controller
     {
         $skill = Skill::create([
             'skill_name' => $request->input('skill_name'),
-            'description' => $request->input('description')
+            'description' => $request->input('description'),
+            'user_id' => auth()->user()->id
         ]);
 
         return redirect('/resume');

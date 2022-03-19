@@ -9,6 +9,11 @@ use Illuminate\Http\Request;
 
 class ResumeController extends Controller
 {
+
+    public function __construct(){
+
+        $this->middleware('auth');
+    }
     public function index(){
 
         if(!auth()->user()){
@@ -16,9 +21,9 @@ class ResumeController extends Controller
         }
         $id = auth()->user()->id;
 
-        $skills = Skill::where('user_id', '=', $id)->all();
-        $experiences = Experience::all();
-        $projects = Project::all();
+        $skills = Skill::where('user_id', '=', $id)->get();
+        $experiences = Experience::where('user_id', '=', $id)->get();
+        $projects = Project::where('user_id', '=', $id)->get();
 
         
         return view('resume.index', [

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddUsersIdToSkillsTable extends Migration
+class AddUserIdColumnToExperiencesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class AddUsersIdToSkillsTable extends Migration
      */
     public function up()
     {
-        Schema::table('skills', function (Blueprint $table) {
+        Schema::table('experiences', function (Blueprint $table) {
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')
                 ->references('id')
@@ -29,7 +29,7 @@ class AddUsersIdToSkillsTable extends Migration
      */
     public function down()
     {
-        Schema::table('skills', function (Blueprint $table) {
+        Schema::table('experiences', function (Blueprint $table) {
             $table->dropColumnIfExists('user_id');
         });
     }

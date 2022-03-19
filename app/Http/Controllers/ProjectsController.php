@@ -48,7 +48,8 @@ class ProjectsController extends Controller
             'organization' => $request->input('organization'),
             'description' => $request->input('description'),
             'start_date' => $request->input('start_date'),
-            'end_date' => $request->input('end_date')
+            'end_date' => $request->input('end_date'),
+            'user_id' => auth()->user()->id
         ]);
 
         return redirect('/resume');
